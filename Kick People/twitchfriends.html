@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Twitch Friends</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <table id="twitch-players">
+
+    <th><img id="gridbanner" src="/imgs/gridironbanner.png"></th>
+    <th><img id="palmbanner" src="/imgs/palmbanner1.png"></th>
+    <th><img id="butchbanner" src="/imgs/butchpfp.png"></th>
+    <tr><td>
+    <!-- Add a placeholder for the Twitch embed -->
+<div id="twitch-embed"></div>
+
+<!-- Load the Twitch embed script -->
+<script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+<!-- Create a Twitch.Player object. This will render within the placeholder div -->
+<script type="text/javascript">
+  new Twitch.Player("twitch-embed", {
+    channel: "gridironking_ttv"
+  });
+</script>
+</td>
+
+
+
+
+<td>
+<div id="twitch-embed1"></div>
+
+<script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+<script type="text/javascript">
+  new Twitch.Player("twitch-embed1", {
+    channel: "palmaurian"
+  });
+</script>
+</td>
+
+<td>
+  <div id="twitch-embed2"></div>
+
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  
+  <script type="text/javascript">
+    new Twitch.Player("twitch-embed2", {
+      channel: "butchplease1985"
+    });
+  </script>
+</td>
+
+
+</tr>
+
+
+<tr id="names">
+  <div id="gri"><td><b>gridironking_ttv</b></td></div>
+  <div id="pal"><td id="paltext"><b>Palmaurian</b></td></div>
+  <div id="butch"><td id="butchtxt"><b>Butchplease1985</b></td></div>
+</tr>
+
+</table>
+
+
+
+<br>
+<hr>
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
