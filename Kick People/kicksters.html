@@ -6,14 +6,58 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <table>
-            <th><img id="zaypfp" src="imgs/zay.png"></th>
+        
+
+        <div id="user-profile"></div>
+
+    <script>
+      const userProfileDiv = document.getElementById('user-profile');
+      const pfpusername = 'theatomnamedadam';
+
+      fetch(`https://kick.com/api/v1/channels/${pfpusername}`)
+        .then(response => response.json())
+        .then(data => {
+          const profilePicUrl = data.user.profile_pic;
+
+          const img = document.createElement('img');
+          img.src = profilePicUrl;
+          img.alt = `${pfpusername}'s Profile Picture`;
+          userProfileDiv.appendChild(img);
+        });
+    </script>
+    <br><script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+            <video id="kick-test" controls autoplay muted></video>
+            <script>
+              var username = "theatomnamedadam";
+              var url = "https://kick.com/api/v1/channels/" + username;
+              fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                  var playback_url = data.playback_url;
+                  if (Hls.isSupported()) {
+                    var video = document.getElementById('kick-test');
+                    var hls = new Hls();
+                    hls.loadSource(playback_url);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                      video.play();
+                    });
+                  } else {
+                    var video = document.getElementById('kick-test');
+                    video.src = playback_url;
+                    video.addEventListener('canplay', function () {
+                      video.play();
+                    });
+                  }
+                })
+                .catch(error => console.error(error));
+            </script></div>
+        <div style="display:flex; justify-content: space-evenly;">
             
+            
+        
+        
+        </div>
 
-            <tr><td>
-
-            </td></tr>
-
-        </table>
     </body>
 </html>

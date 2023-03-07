@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <!--SPECIAL THANKS TO WATERFIELDGAMING, ONEDEEPZAY, PRODIGALTECHIE, JURDTV, PREXX-->
     <head>
         <meta charset="utf-8">
 
@@ -13,7 +14,7 @@
     <body>
     
     <table id="logos">
-        <tr><td><a href="www.kick.com"><img id="kicklogo1" src="imgs/kicklogo.png" alt="fuck it broke"></a></td>
+        <tr><td><a href="https://www.kick.com"><img id="kicklogo1" src="imgs/kicklogo.png" alt="fuck it broke"></a></td>
             <td><a href="https://www.kick.com/TheAtomNamedAdam"><img id="tanalogo1" src="imgs/logo.png" alt="fuck it broke"></a></td>
         </tr>
     </table>  
@@ -29,37 +30,130 @@
         </tr>
     </table>
     
-    <p id="thanks"><b>THANKS FOR STOPPING BY!</b></p>
+    <marquee id="thanks" direction="left"><b>THANKS FOR STOPPING BY!</b><i id="discord">  JOIN THE <a href="https://discord.gg/jASRZg68uD">DISCORD</a></i></marquee>
 
-    <video
-    id="kick-stream"
-    class="video-js"
-    controls
-    autoplay="muted"
-    muted
-    loop
-    errorDisplay="false"
-    preload="auto"
-    width="640"
-    height="264"
-    data-setup="{}"
-  >
-    <source src="https://fa723fc1b171.us-west-2.playback.live-video.net/api/video/v1/us-west-2.196233775518.channel.qFWhJI1dpEhZ.m3u8?player_version=1.14.0" type="application/x-mpegURL" />
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank"
-        >supports HTML5 video</a
-      >
-    </p>
-  </video>
+    <div class="textcontainer">
+      <p id="featured" class="featured"><i>FEATURED STREAMER</i></p>
+    </div>
 
-  <script src="/js/video.min.js"></script>
+    <hr style="width:0%">
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <video id="featured-stream" controls autoplay muted></video>
+    <script>
+      var kickArray = [
+    "Logi",
+    "Way2Gimped",
+    "toxicwocky",
+    "Kyle",
+];
+
+function findUser() {
+  var randomKickster = kickArray[Math.floor(Math.random()*kickArray.length)];
+
+var url = "https://kick.com/api/v1/channels/" + randomKickster;
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    var playback_url = data.playback_url;
+    if (Hls.isSupported()) {
+      if(data.livestream){ 
+        let islive=data.livestream.is_live
+        if (islive===true) {
+          var video = document.getElementById('featured-stream');
+      var hls = new Hls();
+      hls.loadSource(playback_url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+      let pfp=data.user.profile_pic
+      var pfpimage=document.createElement ("img")
+      pfpimage.classList.add("pfpimage")
+      pfpimage.src=pfp
+      var textstream=document.getElementById("featured")
+      pfpimage.addEventListener ("click", function(){
+        window.location.href="https://kick.com/"+randomKickster
+      })
+      textstream.appendChild (pfpimage)
+        } else {
+          const selection=kickArray.indexOf(randomKickster)
+          if(selection !== -1){
+            kickArray.splice(selection, 1)
+            repeatuser()
+          }
+        }
+        console.log(data.livestream.is_live)
+}else{
+    console.log('user is not live')
+    const selection=kickArray.indexOf(randomKickster)
+          if(selection !== -1){
+            kickArray.splice(selection, 1)
+            repeatuser()
+          }
+}
+      
+    } else {
+      var video = document.getElementById('featured-stream');
+      video.src = playback_url;
+      video.addEventListener('canplay', function () {
+        video.play();
+      });
+    }
+  })
+  .catch(error => console.error(error));
+    
+}
+function repeatuser () {
+  findUser ()
+}
+findUser()
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <video id="atom-stream" controls autoplay muted></video>
+    <script>
+      var username = "theatomnamedadam";
+      var url = "https://kick.com/api/v1/channels/" + username;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          var playback_url = data.playback_url;
+          if (Hls.isSupported()) {
+            var video = document.getElementById('atom-stream');
+            var hls = new Hls();
+            hls.loadSource(playback_url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              video.play();
+            });
+          } else {
+            var video = document.getElementById('atom-stream');
+            video.src = playback_url;
+            video.addEventListener('canplay', function () {
+              video.play();
+            });
+          }
+        })
+        .catch(error => console.error(error));
+    </script>
+
+
+    
 
     <img id="atombanner" src="imgs/atom-banner.png">
 
 
+
+
+
+
+
+
+
+
+
+    
 
     </body>
 

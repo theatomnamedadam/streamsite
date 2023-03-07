@@ -139,30 +139,31 @@ a:hover {
 
 #twitch-embed2 {
     float: left;
-    margin-left: 23px;
+    margin-left: 40px;
 }
 
 #butchtxt {
     text-indent: 21%;
 }
 
-#kick-stream {
+#featured-stream {
     display: block;
+    box-sizing: border-box;
     margin-left:auto;
     margin-right:auto;
     margin-top: 25px;
-    width: ;
+    width: 40%;
+
 }
 
 #thanks {
     color: white;
-    text-align: center;
     font-family: monospace;
     font-size: xx-large;
 }
 
 #butchbanner {
-    margin-left: 25px;
+    margin-left: 45px;
 }
 
 #artnames {
@@ -183,5 +184,36 @@ a:hover {
     width: 200px;
     height: 200px;
     margin-right: 70%;
+}
+
+#kick-test {
+    width: 25%;
+}
+
+#featured {
+    text-align: center;
+    font-family: monospace;
+    font-size: xx-large;
+    color:white;
+}
+
+#atom-stream {
+    display:block;
+    width:25%;
+    
+}
+
+.textcontainer .featured .pfpimage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 100%;
+    left: 48.6%;
+}
+
+.textcontainer {
+    position: relative;
+    left: calc(100vw -25px);
 }
 
